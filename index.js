@@ -41,6 +41,25 @@
     // Refer to Anthropic's guide on the messages API here: https://docs.anthropic.com/en/api/messages
     let messages = []
 
+
+    // Get question text
+      while (true) {
+      
+        let input
+  
+        try {
+          input = await codioIDE.coachBot.input()
+        } catch (e) {
+            if (e.message == "Cancelled") {
+              break
+            }
+        }
+  
+        
+        // Specify condition here to exit loop gracefully
+        if (input == "Thanks") {
+          break
+        }
     const userPrompt = `Here is the question the student has asked:
         <student_question>  ${input} </student_question>
 
@@ -75,11 +94,9 @@
       messages: messages
     })
     
+    }
+    codioIDE.coachBot.write("Please feel free to ask any more questions about this course!")
+    codioIDE.coachBot.showMenu()
   }
 // calling the function immediately by passing the required variables
 })(window.codioIDE, window)
-
- 
-
-  
-  
